@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    command: php -S 0.0.0.0:8080 public/index.php
+    restart: always
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: root
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./database/mysql-data:/var/lib/mysql:rw
