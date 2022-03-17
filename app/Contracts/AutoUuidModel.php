@@ -11,7 +11,9 @@ abstract class AutoUuidModel extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            if(!$model->uuid) {
+                $model->uuid = (string) Uuid::generate(4);
+            }
         });
     }
 }

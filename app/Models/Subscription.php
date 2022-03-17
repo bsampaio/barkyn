@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\SubscriptionsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property double $base_price
  * @property double $total_price
  * @property Carbon $next_order_date
+ * @property boolean $activated
  * @property Customer $customer
  * @property Pet[]|null $pets
  * @property Order[]|null $orders
@@ -29,7 +31,8 @@ class Subscription extends Model
     protected $fillable = [
         'base_price',
         'total_price',
-        'activated'
+        'activated',
+        'next_order_date'
     ];
 
     public function customer(): BelongsTo

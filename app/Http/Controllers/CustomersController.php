@@ -19,7 +19,7 @@ class CustomersController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        return Response::json(Customer::all());
+        return response()->json(Customer::all());
     }
 
     /**
@@ -35,7 +35,7 @@ class CustomersController extends Controller
 
         $data = (new SubscriptionsService)->getSubscriptionsByCustomer($customer);
 
-        return Response::json($data);
+        return response()->json($data);
     }
 
     /**
@@ -47,19 +47,19 @@ class CustomersController extends Controller
      */
     public function update(Request $request, $id): JsonResponse
     {
-        $input = [$id, ...$request->all()];
+        $request->request->add(['id' => $id]);
 
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required|max:191',
             'id' => 'required|numeric|exists:customers,id'
-        ], $input);
+        ]);
 
-        $name = $request->get('name');
+        $newName = $request->get('name');
 
         $customer = Customer::find($id);
-        $customer->name = $name;
+        $customer->name = $newName;
         $customer->update();
 
-        return Response::json($customer);
+        return response()->json($customer);
     }
 }

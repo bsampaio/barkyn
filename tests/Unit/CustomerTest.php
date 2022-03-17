@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Customer;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
@@ -8,7 +9,7 @@ class CustomerTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * @var \App\Models\Customer|null
+     * @var Customer|null
      */
     protected $customer = null;
 
@@ -16,7 +17,7 @@ class CustomerTest extends TestCase
     {
         parent::setUp();
 
-        $this->customer = \App\Models\Customer::factory()->create();
+        $this->customer = Customer::factory()->create();
     }
 
     /**
@@ -26,7 +27,7 @@ class CustomerTest extends TestCase
      */
     public function testCreateCustomer()
     {
-        $customer = \App\Models\Customer::factory()->create();
+        $customer = Customer::factory()->create();
 
         $this->assertNotNull($customer);
     }
@@ -38,7 +39,7 @@ class CustomerTest extends TestCase
      */
     public function testDeletesCustomer()
     {
-        $customer = \App\Models\Customer::factory()->create();
+        $customer = Customer::factory()->create();
         $deleted = $customer->delete();
         $this->assertTrue($deleted, "The Customer has been deleted successfully.");
     }
@@ -53,7 +54,7 @@ class CustomerTest extends TestCase
         $updatedData = [
             'name' => 'Breno Grillo',
             'email' => 'brenogrillo@gmail.com',
-            'gender' => \App\Models\Customer::GENDER__MALE,
+            'gender' => Customer::GENDER__MALE,
             'birth_date' => \Carbon\Carbon::now()
         ];
 
@@ -65,5 +66,19 @@ class CustomerTest extends TestCase
         $this->assertEquals($updatedData['email'], $this->customer->email);
         $this->assertEquals($updatedData['gender'], $this->customer->gender);
         $this->assertEquals($updatedData['birth_date']->format('Y-m-d'), $this->customer->birth_date->format('Y-m-d'));
+    }
+
+    /**
+     * Retrieves all customers.
+     * @test
+     * @return void
+     */
+    public function testGetAllCustomers()
+    {
+        $amount = 10;
+        Customer::factory($amount)->create();
+
+        $customers = Customer::all();
+        $this->assertGreaterThanOrEqual($amount, $customers->count());
     }
 }

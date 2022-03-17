@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\AutoUuidModel;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Webpatser\Uuid\Uuid;
@@ -17,12 +18,22 @@ use Webpatser\Uuid\Uuid;
  */
 class Order extends AutoUuidModel
 {
+    use HasFactory;
+
     protected $table = 'orders';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'estimated_shipping',
+        'ship_date',
+    ];
 
     protected $fillable = [
         'estimated_shipping',
         'ship_date',
-        'description'
+        'description',
+        'subscription_id'
     ];
 
     public function subscription(): BelongsTo
