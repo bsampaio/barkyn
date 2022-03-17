@@ -1,24 +1,33 @@
-# Lumen PHP Framework
+# Barkyn Coding Challenge
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+The project goal is to know me and how do I code a bit better.
+The challenge description can be found [here](https://gist.github.com/barkyndev/3048763d21f80a3b6355f10ee7510b6a)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## About me
+My name is Breno Grillo. I'm based in Brazil and I mostly develop projects using Laravel and Lumen.
+In this challenge, Laravel is not allowed so I've used [Lumen](https://lumen.laravel.com/docs/9.x)
 
-## Official Documentation
+## About the code
+The code was made considering SOLID principles and PSR standards. A Service layer was used to organize the code better.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Unit testing was also developed and can be seen in ```tests/``` directory. It can runs with PHPUnit.
 
-## Contributing
+I also made a request library with [Insomnia](https://insomnia.rest/download) which is present in the root folder named as ```Imsonia.json```
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Setup
 
-## Security Vulnerabilities
+The project comes a Dockerfile and can run with ```docker-compose```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+After the build of the images, access the container using: 
+```docker exec -it challenge-api-1 sh```
 
-## License
+After that you need to run:
+* Migrations
+  * ```php artisan migrate```
+* Seeds (_optional_)
+  * ```php artisan db:seed --class=CreateCustomersSeeder```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+Now the project is up and running and can be found at ```127.0.0.1:8080```.
+
+Contact me at: [brenogrillo@gmail.com](mailto:brenogrillo@gmail.com)
