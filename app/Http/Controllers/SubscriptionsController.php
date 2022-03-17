@@ -78,7 +78,8 @@ class SubscriptionsController extends Controller
         }
 
         return response()->json([
-            'message' => 'Subscription created successfully.'
+            'message' => 'Subscription created successfully.',
+            'subscription' => $subscription
         ]);
     }
 
