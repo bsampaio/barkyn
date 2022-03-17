@@ -16,6 +16,8 @@ I also made a request library with [Insomnia](https://insomnia.rest/download) wh
 
 ## Setup
 
+First you'll need to copy the env file from the example ```cp .env.example .env```. The file contains database configurations to run the application with docker.
+
 The project comes a Dockerfile and can run with ```docker-compose```
 
 After the build of the images, access the container using: 
